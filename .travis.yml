@@ -10,7 +10,7 @@ branches:
 
 install:
   - git clone https://github.com/ShinyArceus1/SOS-Code.git
-  - cp -r $PWD/code/sos.py .
+  - cp -r $PWD/SOS-Code/code/sos.py .
 
 script:
   - python game.py
