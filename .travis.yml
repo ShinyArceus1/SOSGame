@@ -1,0 +1,34 @@
+sudo:              false
+
+language:          python
+
+python:
+  - 3.6.5
+
+branches:
+  - master
+
+install:
+  - git clone https://github.com/ShinyArceus1/SOS-Code.git
+  - cp -r $PWD/code/sos.py .
+
+script:
+  - python game.py
+
+before_deploy:
+  - cd ..
+  - git clone https://github.com/hfagerlund/mkdocs-docskimmer.git
+  - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer .
+  - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer/. ./docs
+  - mkdocs build --verbose --clean
+
+deploy:
+  provider:        pages
+  skip_cleanup:    true
+  github_token:    $github_token
+  local_dir:       site
+  on:
+    branch:        master
+
+notifications:
+  email:           false
