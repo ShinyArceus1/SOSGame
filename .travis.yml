@@ -22,7 +22,6 @@ script:
   - python game.py
 
 before_deploy:
-  - cd ..
   - git clone https://github.com/hfagerlund/mkdocs-docskimmer.git
   - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer .
   - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer/. ./docs
