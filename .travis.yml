@@ -8,6 +8,9 @@ python:
 branches:
   - master
 
+before_install:
+  - pip install -r requirements.txt
+
 install:
   - git clone https://github.com/ShinyArceus1/SOS-Code.git
   - cp -r $PWD/SOS-Code/code/sos.py .
