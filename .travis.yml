@@ -13,13 +13,13 @@ before_install:
 
 install:
   - wget https://rawgit.com/ShinyArceus1/SOS-Code/master/code/sos.py
-  - svn export https://github.com/Richienb/ROS-Code/src/ros ros
+  - wget https://rawgit.com/Richienb/ROS-Code/master/Makefile && make prepare && rm -f run_file.py && rm -f Makefile
 
 script:
   - python game.py
 
 before_deploy:
-  - svn export https://github.com/hfagerlund/mkdocs-docskimmer/mkdocs_docskimmer mkdocs_theme
+  - git clone https://github.com/hfagerlund/mkdocs-docskimmer mkdocs_theme_source && cp ./mkdocs_theme_source/mkdocs_docskimmer .
   - cp -r ./mkdocs_theme .
   - cp -r ./mkdocs_theme/. ./docs
   - mkdocs build --verbose --clean
