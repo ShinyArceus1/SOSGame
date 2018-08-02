@@ -1,5 +1,5 @@
 import sos
-import ros
+from ros import main as ros
 
 sos.shineprint("a game")
 ros.delay(2)
