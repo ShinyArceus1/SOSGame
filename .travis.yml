@@ -12,19 +12,16 @@ before_install:
   - pip install -r requirements.txt
 
 install:
-  - git clone https://github.com/ShinyArceus1/SOS-Code.git
-  - cp -r $PWD/SOS-Code/code/sos.py .
-  - git clone https://github.com/Richienb/ROS-Code.git
-  - mv $PWD/ROS-Code/src/syntax.py $PWD/ROS-Code/src/ros.py
-  - cp -r $PWD/ROS-Code/src/ros.py .
+  - wget https://rawgit.com/ShinyArceus1/SOS-Code/master/code/sos.py
+  - svn export https://github.com/Richienb/ROS-Code/master/src/ros ros
 
 script:
   - python game.py
 
 before_deploy:
-  - git clone https://github.com/hfagerlund/mkdocs-docskimmer.git
-  - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer .
-  - cp -r $PWD/mkdocs-docskimmer/mkdocs_docskimmer/. ./docs
+  - svn export https://github.com/hfagerlund/mkdocs-docskimmer/master/mkdocs_docskimmer mkdocs_theme
+  - cp -r ./mkdocs_theme .
+  - cp -r ./mkdocs_theme/. ./docs
   - mkdocs build --verbose --clean
 
 deploy:
