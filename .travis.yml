@@ -2,24 +2,24 @@ sudo:              false
 
 language:          python
 
-python:
-  - 3.6.5
+cache:             pip
 
-branches:
-  - master
+python:            3.6.5
+
+branches:          master
 
 before_install:
   - pip install -r requirements.txt
 
 install:
   - wget https://rawgit.com/ShinyArceus1/SOS-Code/master/code/sos.py
-  - svn export https://github.com/Richienb/ROS-Code/master/src/ros ros
+  - svn export https://github.com/Richienb/ROS-Code/src/ros ros
 
 script:
   - python game.py
 
 before_deploy:
-  - svn export https://github.com/hfagerlund/mkdocs-docskimmer/master/mkdocs_docskimmer mkdocs_theme
+  - svn export https://github.com/hfagerlund/mkdocs-docskimmer/mkdocs_docskimmer mkdocs_theme
   - cp -r ./mkdocs_theme .
   - cp -r ./mkdocs_theme/. ./docs
   - mkdocs build --verbose --clean
